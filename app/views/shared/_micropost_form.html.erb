@@ -1,0 +1,16 @@
+<%= javascript_include_tag "javascripts/content_counter" %>
+<% @maxcontent_length = 140 %>
+<%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new micropost...", 
+      onkeypress: "imposeMaxLength(this, #{@maxcontent_length})",
+      onclick: "imposeMaxLength(this, #{@maxcontent_length})",
+      onblur: "imposeMaxLength(this, #{@maxcontent_length})",
+      onkeyup: "imposeMaxLength(this, #{@maxcontent_length})"
+    -%>
+  <div id="textAreaStatus">&nbsp;</div>
+  <br>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
